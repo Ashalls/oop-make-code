@@ -9,9 +9,9 @@ class Level {
     }
 
     get background(): number {
-        return scene.backgroundColor()
+        return scene.backgroundColor();
     }
     set background(background: number) {
-        scene.setBackgroundColor(background)
+        scene.setBackgroundColor(background);
     }
 }
