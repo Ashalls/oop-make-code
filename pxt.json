@@ -1,5 +1,5 @@
 {
-    "name": "Platformer",
+    "name": "Dino Dash",
     "description": "",
     "dependencies": {
         "device": "*"
@@ -15,9 +15,9 @@
         "images.g.ts",
         "GameManager.ts",
         "Level.ts",
-        "Enemy.ts",
         "BaseCharacter.ts",
-        "Asset.ts"
+        "Asset.ts",
+        "InteractableCharacter.ts"
     ],
     "testFiles": [
         "test.ts"

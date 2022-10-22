@@ -14,6 +14,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "dino"
     },
+    "image2": {
+        "data": "hwQIAAgAAAAAu8wAsFXVD1s90/1bUxX9W1MV/Vsd0f2wVd0PALvMAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "coin"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",

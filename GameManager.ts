@@ -8,7 +8,9 @@ class GameManager {
         this.registerPlayers();
         this.registerAssets();
         this.buttonClickRegister();
-        this.gameFunctions();
+        this.gameUpdateFunctions();
+        this.gameoverlapDetects();
+        info.setScore(0)
     }
 
     private setupLevel() : void {
@@ -39,7 +41,20 @@ class GameManager {
         })
     }
 
-    private gameFunctions() : void {
+    private spawnCactus() : void {
+        let cactus = new InteractableCharacter(sprites.create(assets.image`cactus`, SpriteKind.Enemy))
+        cactus.position = [160, 105, 0];
+        cactus.velocity = [-75, 0];
+    }
+
+    private spawnCoin(): void {
+        let coin = new InteractableCharacter(sprites.create(assets.image`coin`, SpriteKind.Food))
+        coin.position = [160, 60, 0];
+        coin.velocity = [-75, 0];
+        coin.character.setScale(1.5, ScaleAnchor.Middle);
+    }
+
+    private gameUpdateFunctions() : void {
         game.onUpdate(function () {
             this.player.yVel += this.level.gravity;
             
@@ -51,13 +66,20 @@ class GameManager {
         })
 
         game.onUpdateInterval(2000, function (){
-            let cactus = new Enemy(sprites.create(assets.image`cactus`, SpriteKind.Enemy))
-            cactus.position = [160, 105, 0];
-            cactus.velocity = [-75, 0];
+            this.spawnCactus();
+            this.spawnCoin();
+        })
+    }
+
+    private gameoverlapDetects(): void {
+        sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function() {
+            game.over(false)
         })
 
-        sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function () {
-            game.over(false)
+        sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function(player: Sprite, coin: Sprite) {
+            music.baDing.play();
+            info.setScore(info.score() + 100);
+            coin.destroy();
         })
     }
 }
