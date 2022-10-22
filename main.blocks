@@ -1,1 +1,1 @@
-<xml xmlns="https://developers.google.com/blockly/xml"></xml>
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="pxt-on-start" id="dJu=%JYf{N/39I0smTL-" x="0" y="0"><statement name="HANDLER"><block type="typescript_statement" id="GD)6E(q2sqLya%wv/pMS" editable="false"><mutation xmlns="http://www.w3.org/1999/xhtml" line0="let runGame = new GameManager();" numlines="1" declaredvars="runGame"></mutation></block></statement></block></xml>

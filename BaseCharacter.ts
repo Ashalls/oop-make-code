@@ -9,9 +9,8 @@ class BaseCharacter {
     }
 
     get position(): number[] {
-        return [this.character.x, this.character.x, this.character.z];
+        return [this.character.x, this.character.y, this.character.z];
     }
-
     set position(spritePosition: number[]) {
         this.character.x = spritePosition[0];
         this.character.y = spritePosition[1];
@@ -21,7 +20,6 @@ class BaseCharacter {
     get velocity(): number[] {
         return [this.character.vx, this.character.vy];
     }
-
     set velocity(spriteVelocity: number[]) {
         this.character.vx = spriteVelocity[0];
         this.character.vy = spriteVelocity[1];

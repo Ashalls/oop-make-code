@@ -6,7 +6,7 @@ class Asset {
     }
 
     get position(): number[] {
-        return [this.asset.x, this.asset.x, this.asset.z];
+        return [this.asset.x, this.asset.y, this.asset.z];
     }
     set position(spritePosition: number[]) {
         this.asset.x = spritePosition[0];
