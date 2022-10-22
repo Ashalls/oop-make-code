@@ -5,6 +5,7 @@ class GameManager {
         this.registerPlayers();
         this.buttonClickRegister();
         this.tick();
+        console.log("Constructed")
     }
 
     private registerPlayers() {
