@@ -1,0 +1,1 @@
+greeter = Player("world")

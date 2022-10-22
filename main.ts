@@ -1,0 +1,1 @@
+let runGame = new GameManager();
