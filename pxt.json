@@ -1,5 +1,5 @@
 {
-    "name": "Untitled",
+    "name": "Platformer",
     "description": "",
     "dependencies": {
         "device": "*"
@@ -11,10 +11,13 @@
         "assets.json",
         "Player.ts",
         "main.py",
-        "Map.ts",
         "images.g.jres",
         "images.g.ts",
-        "GameManager.ts"
+        "GameManager.ts",
+        "Level.ts",
+        "Enemy.ts",
+        "BaseCharacter.ts",
+        "Asset.ts"
     ],
     "testFiles": [
         "test.ts"

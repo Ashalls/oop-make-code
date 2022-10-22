@@ -1,18 +1,9 @@
-class Player {
-    public playerSprite: Sprite;
-    
-    get lives(): any {
-        return info.life();
-    }
-    set lives(lives: any) {
-        info.setLife(lives)
-    }
+class Player extends BaseCharacter{
+    public yVel : number;
+    public jumpHeight: number = -150;
     
     constructor(playerSprite: Sprite) {
-        this.playerSprite = playerSprite;
-    }
-
-    public doThisOnMove() {
-        this.playerSprite.x += 10;
+        super(playerSprite);
+        this.yVel = 0;
     }
 }
