@@ -15,9 +15,10 @@
         "images.g.ts",
         "GameManager.ts",
         "Level.ts",
-        "BaseCharacter.ts",
         "Asset.ts",
-        "InteractableCharacter.ts"
+        "Collectable.ts",
+        "BaseAsset.ts",
+        "InteractableAsset.ts"
     ],
     "testFiles": [
         "test.ts"

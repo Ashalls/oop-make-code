@@ -1,4 +1,4 @@
-class Player extends BaseCharacter{
+class Player extends BaseAsset{
     public yVel : number;
     public jumpHeight: number = -150;
     

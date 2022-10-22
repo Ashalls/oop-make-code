@@ -34,7 +34,7 @@ class GameManager {
 
     private buttonClickRegister() : void {
         controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
-            if (this.player.character.overlapsWith(this.floor.asset)) {
+            if (this.player.baseAsset.overlapsWith(this.floor.asset)) {
                 this.player.yVel = this.player.jumpHeight;
                 this.player.velocity = [0, this.player.yVel];
             }
@@ -42,23 +42,31 @@ class GameManager {
     }
 
     private spawnCactus() : void {
-        let cactus = new InteractableCharacter(sprites.create(assets.image`cactus`, SpriteKind.Enemy))
+        let cactus = new InteractableAsset(sprites.create(assets.image`cactus`, SpriteKind.Enemy))
         cactus.position = [160, 105, 0];
         cactus.velocity = [-75, 0];
     }
 
     private spawnCoin(): void {
-        let coin = new InteractableCharacter(sprites.create(assets.image`coin`, SpriteKind.Food))
+        let coin = new InteractableAsset(sprites.create(assets.image`coin`, SpriteKind.Food))
         coin.position = [160, 60, 0];
         coin.velocity = [-75, 0];
-        coin.character.setScale(1.5, ScaleAnchor.Middle);
+        coin.baseAsset.setScale(1.5, ScaleAnchor.Middle);
+
+        // We can store objects within the data of the sprite object in
+        // order to retrieve them on events
+
+        let coinCollectableData = new CollectableData();
+        coinCollectableData.isCollectable = true;
+        coinCollectableData.collectableType = CollectableType.Coin;
+        coin.baseAsset.data['coinCollectableData'] = coinCollectableData;
     }
 
     private gameUpdateFunctions() : void {
         game.onUpdate(function () {
             this.player.yVel += this.level.gravity;
             
-            if (this.player.character.overlapsWith(this.floor.asset)) {
+            if (this.player.baseAsset.overlapsWith(this.floor.asset)) {
                 this.player.yVel = 0;
             }
             
@@ -79,7 +87,11 @@ class GameManager {
         sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function(player: Sprite, coin: Sprite) {
             music.baDing.play();
             info.setScore(info.score() + 100);
-            coin.destroy();
+            let collectableData: CollectableData = coin.data['coinCollectableData']
+            
+            if (collectableData.isCollectable && collectableData.collectableType == CollectableType.Coin){
+                coin.destroy();
+            }
         })
     }
 }
