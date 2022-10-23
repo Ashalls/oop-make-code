@@ -14,4 +14,11 @@ class Level {
     set background(background: number) {
         scene.setBackgroundColor(background);
     }
+
+    get score(): number {
+        return info.score();
+    }
+    set score(score: number) {
+        info.setScore(score)
+    }
 }

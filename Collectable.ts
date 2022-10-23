@@ -8,3 +8,6 @@ class CollectableData {
     public isCollectable: boolean;
     public collectableType: CollectableType;
 }
+
+
+

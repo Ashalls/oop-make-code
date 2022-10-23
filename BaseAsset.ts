@@ -1,11 +1,18 @@
 class BaseAsset {
     public baseAsset: Sprite;
 
-    get lives(): any {
+    get lives(): number {
         return info.life();
     }
-    set lives(lives: any) {
+    set lives(lives: number) {
         info.setLife(lives)
+    }
+
+    get spriteKind(): any {
+        return this.baseAsset.kind()
+    }
+    set spriteKind(spriteKind: any) {
+        this.baseAsset.setKind(spriteKind)
     }
 
     get position(): number[] {
@@ -25,8 +32,8 @@ class BaseAsset {
         this.baseAsset.vy = spriteVelocity[1];
     }
 
-    constructor(enemySprite: Sprite) {
-        this.baseAsset = enemySprite;
+    constructor(spriteImage: Image) {
+        this.baseAsset = sprites.create(spriteImage)
         let dataStorageOnSprite: { [key: string]: any } = {};
         this.baseAsset.data = dataStorageOnSprite;
     }

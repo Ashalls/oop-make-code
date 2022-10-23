@@ -10,7 +10,6 @@ class GameManager {
         this.buttonClickRegister();
         this.gameUpdateFunctions();
         this.gameoverlapDetects();
-        info.setScore(0)
     }
 
     private setupLevel() : void {
@@ -20,8 +19,7 @@ class GameManager {
     }
 
     private registerPlayers() : void {
-        this.player = new Player(
-            sprites.create(assets.image`dino`, SpriteKind.Player));
+        this.player = new Player(assets.image`dino`);
         this.player.position = [15, 80, 0]
         this.player.jumpHeight = -150;
     }
@@ -42,13 +40,14 @@ class GameManager {
     }
 
     private spawnCactus() : void {
-        let cactus = new InteractableAsset(sprites.create(assets.image`cactus`, SpriteKind.Enemy))
+        let cactus = new Enemy(assets.image`cactus`);
         cactus.position = [160, 105, 0];
         cactus.velocity = [-75, 0];
     }
 
     private spawnCoin(): void {
-        let coin = new InteractableAsset(sprites.create(assets.image`coin`, SpriteKind.Food))
+        let coin = new InteractableAsset(assets.image`coin`);
+        coin.spriteKind = SpriteKind.Food;
         coin.position = [160, 60, 0];
         coin.velocity = [-75, 0];
         coin.baseAsset.setScale(1.5, ScaleAnchor.Middle);
@@ -86,7 +85,7 @@ class GameManager {
 
         sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function(player: Sprite, coin: Sprite) {
             music.baDing.play();
-            info.setScore(info.score() + 100);
+            this.level.score += 100;
             let collectableData: CollectableData = coin.data['coinCollectableData']
             
             if (collectableData.isCollectable && collectableData.collectableType == CollectableType.Coin){

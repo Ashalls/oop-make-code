@@ -18,7 +18,8 @@
         "Asset.ts",
         "Collectable.ts",
         "BaseAsset.ts",
-        "InteractableAsset.ts"
+        "InteractableAsset.ts",
+        "Enemy.ts"
     ],
     "testFiles": [
         "test.ts"

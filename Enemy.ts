@@ -1,7 +1,7 @@
-class Enemy extends BaseCharacter {
+class Enemy extends BaseAsset {
 
-    constructor(enemySprite: Sprite) {
-        super(enemySprite);
-        this.character.setFlag(SpriteFlag.AutoDestroy, true);
+    constructor(enemySpriteImage: Image) {
+        super(enemySpriteImage);
+        this.spriteKind = SpriteKind.Enemy;
     }
 }
