@@ -3,6 +3,8 @@ class GameManager {
     private floor: Asset;
     private level: Level;
 
+    private initialSpawnRun: boolean;
+
     constructor() {
         this.setupLevel();
         this.registerPlayers();
@@ -51,14 +53,16 @@ class GameManager {
         coin.position = [160, 60, 0];
         coin.velocity = [-75, 0];
         coin.baseAsset.setScale(1.5, ScaleAnchor.Middle);
+        coin.baseAsset.data.isCollectable = true;
+        coin.baseAsset.data.collectableType = CollectableType.Coin;
+    }
 
-        // We can store objects within the data of the sprite object in
-        // order to retrieve them on events
-
-        let coinCollectableData = new CollectableData();
-        coinCollectableData.isCollectable = true;
-        coinCollectableData.collectableType = CollectableType.Coin;
-        coin.baseAsset.data['coinCollectableData'] = coinCollectableData;
+    private spawnJetpack(): void {
+        let jetPack = new InteractableAsset(assets.image`jetPack`);
+        jetPack.spriteKind = SpriteKind.PowerUp;
+        jetPack.position = [160, 60, 0];
+        jetPack.velocity = [-75, 0];
+        jetPack.baseAsset.data.collectableType = CollectableType.PowerUp;
     }
 
     private gameUpdateFunctions() : void {
@@ -72,9 +76,19 @@ class GameManager {
             this.player.velocity = [0, this.player.yVel];
         })
 
-        game.onUpdateInterval(2000, function (){
-            this.spawnCactus();
+        game.onUpdateInterval(randint(10000, 15000), function () {
+            if (this.initialSpawnRun) {
+                this.spawnJetpack();
+            }
+        })
+
+        game.onUpdateInterval(randint(2000, 3000), function () {
             this.spawnCoin();
+        })
+
+        game.onUpdateInterval(randint(1500, 3000), function (){
+            this.spawnCactus();
+            this.initialSpawnRun = true;
         })
     }
 
@@ -86,11 +100,16 @@ class GameManager {
         sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function(player: Sprite, coin: Sprite) {
             music.baDing.play();
             this.level.score += 100;
-            let collectableData: CollectableData = coin.data['coinCollectableData']
             
-            if (collectableData.isCollectable && collectableData.collectableType == CollectableType.Coin){
+            if (coin.data.isCollectable && coin.data.collectableType == CollectableType.Coin){
                 coin.destroy();
             }
+        })
+
+        sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUp, function (player: Sprite, jetPack: Sprite) {
+            // power up - use on button push
+            // timer.debounce("action", 5000, power_down)
+            jetPack.destroy();
         })
     }
 }

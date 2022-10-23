@@ -34,7 +34,7 @@ class BaseAsset {
 
     constructor(spriteImage: Image) {
         this.baseAsset = sprites.create(spriteImage)
-        let dataStorageOnSprite: { [key: string]: any } = {};
-        this.baseAsset.data = dataStorageOnSprite;
+        // let dataStorageOnSprite: { [key: string]: any } = {};
+        this.baseAsset.data = new SpriteData();
     }
 }

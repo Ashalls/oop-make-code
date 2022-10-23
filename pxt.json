@@ -19,7 +19,9 @@
         "Collectable.ts",
         "BaseAsset.ts",
         "InteractableAsset.ts",
-        "Enemy.ts"
+        "Enemy.ts",
+        "SriteKindManager.ts",
+        "SpriteData.ts"
     ],
     "testFiles": [
         "test.ts"

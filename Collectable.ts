@@ -1,13 +1,12 @@
 enum CollectableType {
     Coin,
     HealthPack,
-    Weapon
+    Weapon,
+    PowerUp,
+    None
 }
 
-class CollectableData {
-    public isCollectable: boolean;
-    public collectableType: CollectableType;
-}
+
 
 
 
