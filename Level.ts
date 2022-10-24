@@ -1,12 +1,5 @@
 class Level {
-    private _gravity: number;
-
-    get gravity(): number {
-        return this._gravity;
-    }
-    set gravity(gravity: number) {
-        this._gravity = gravity;
-    }
+    public gravity: number;
 
     get background(): number {
         return scene.backgroundColor();
