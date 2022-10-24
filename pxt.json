@@ -21,7 +21,9 @@
         "InteractableAsset.ts",
         "Enemy.ts",
         "SriteKindManager.ts",
-        "SpriteData.ts"
+        "SpriteData.ts",
+        "Stat.ts",
+        "IModifierProvider.ts"
     ],
     "testFiles": [
         "test.ts"
