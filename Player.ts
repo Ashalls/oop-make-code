@@ -8,11 +8,11 @@ class Player extends BaseAsset implements IModifierProvider{
         this.yVel = 0;
     }
 
-    getAdditiveModifiers(stat: Stat) {
+    public getAdditiveModifiers(stat: Stat) {
         return 3;
     }
 
-    getPercentageModifiers(stat: Stat) {
+    public getPercentageModifiers(stat: Stat) {
         return 3;
     }
 }

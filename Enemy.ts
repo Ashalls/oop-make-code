@@ -5,11 +5,11 @@ class Enemy extends BaseAsset implements IModifierProvider{
         this.spriteKind = SpriteKind.Enemy;
     }
 
-    getAdditiveModifiers(stat: Stat){
+    public getAdditiveModifiers(stat: Stat){
         return 3;
     }
 
-    getPercentageModifiers(stat: Stat) {
+    public getPercentageModifiers(stat: Stat) {
         return 3;
     }
 }
