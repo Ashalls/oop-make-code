@@ -1,7 +1,7 @@
-class InteractableAsset extends BaseAsset {
+class InteractableAsset extends BaseSprite {
 
     constructor(interactableSpriteImage: Image) {
         super(interactableSpriteImage);
-        this.baseAsset.setFlag(SpriteFlag.AutoDestroy, true);
+        this.sprite.setFlag(SpriteFlag.AutoDestroy, true);
     }
 }

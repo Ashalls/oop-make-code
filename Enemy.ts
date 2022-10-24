@@ -1,4 +1,4 @@
-class Enemy extends BaseAsset implements IModifierProvider{
+class Enemy extends BaseSprite implements IModifierProvider{
 
     constructor(enemySpriteImage: Image) {
         super(enemySpriteImage);

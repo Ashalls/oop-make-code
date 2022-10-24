@@ -17,13 +17,13 @@
         "Level.ts",
         "Asset.ts",
         "Collectable.ts",
-        "BaseAsset.ts",
         "InteractableAsset.ts",
         "Enemy.ts",
         "SriteKindManager.ts",
         "SpriteData.ts",
         "Stat.ts",
-        "IModifierProvider.ts"
+        "IModifierProvider.ts",
+        "BaseSprite.ts"
     ],
     "testFiles": [
         "test.ts"

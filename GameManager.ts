@@ -27,16 +27,15 @@ class GameManager {
     }
 
     private registerAssets() : void {
-        this.floor = new Asset(
-            sprites.create(assets.image`floor`));
+        this.floor = new Asset(assets.image`floor`);
         this.floor.position = [80, 115, 0]
     }
 
     private buttonClickRegister() : void {
         controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
-            if (this.player.baseAsset.overlapsWith(this.floor.asset)) {
-                this.player.yVel = this.player.jumpHeight;
-                this.player.velocity = [0, this.player.yVel]; 
+            if (this.player.sprite.overlapsWith(this.floor.sprite)) {
+                this.player.sprite.vy = this.player.jumpHeight;
+                this.player.velocity = [0, this.player.sprite.vy];
             }
         })
     }
@@ -52,9 +51,9 @@ class GameManager {
         coin.spriteKind = SpriteKind.Food;
         coin.position = [160, 60, 0];
         coin.velocity = [-75, 0];
-        coin.baseAsset.setScale(1.5, ScaleAnchor.Middle);
-        coin.baseAsset.data.isCollectable = true;
-        coin.baseAsset.data.collectableType = CollectableType.Coin;
+        coin.sprite.setScale(1.5, ScaleAnchor.Middle);
+        coin.sprite.data.isCollectable = true;
+        coin.sprite.data.collectableType = CollectableType.Coin;
     }
 
     private spawnJetpack(): void {
@@ -62,23 +61,23 @@ class GameManager {
         jetPack.spriteKind = SpriteKind.PowerUp;
         jetPack.position = [160, 60, 0];
         jetPack.velocity = [-75, 0];
-        jetPack.baseAsset.data.collectableType = CollectableType.PowerUp;
+        jetPack.sprite.data.collectableType = CollectableType.PowerUp;
     }
 
     private gameUpdateFunctions() : void {
         game.onUpdate(function () {
-            this.player.yVel += this.level.gravity;
+            this.player.sprite.vy += this.level.gravity;
             
-            if (this.player.baseAsset.overlapsWith(this.floor.asset)) {
-                this.player.yVel = 0;
+            if (this.player.sprite.overlapsWith(this.floor.sprite)) {
+                this.player.sprite.vy = 0;
             }
 
             // Fix for when Dino falls gets stuck in the floor
-            if (this.player.baseAsset.bottom > 112) {
-                this.player.baseAsset.bottom = 109;
+            if (this.player.sprite.bottom > 112) {
+                this.player.sprite.bottom = 109;
             }
 
-            this.player.velocity = [0, this.player.yVel];
+            this.player.velocity = [0, this.player.sprite.vy];
         })
 
         game.onUpdateInterval(randint(10000, 15000), function () {
