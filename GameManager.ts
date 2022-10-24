@@ -36,7 +36,7 @@ class GameManager {
         controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
             if (this.player.baseAsset.overlapsWith(this.floor.asset)) {
                 this.player.yVel = this.player.jumpHeight;
-                this.player.velocity = [0, this.player.yVel];
+                this.player.velocity = [0, this.player.yVel]; 
             }
         })
     }
@@ -72,7 +72,12 @@ class GameManager {
             if (this.player.baseAsset.overlapsWith(this.floor.asset)) {
                 this.player.yVel = 0;
             }
-            
+
+            // Fix for when Dino falls gets stuck in the floor
+            if (this.player.baseAsset.bottom > 112) {
+                this.player.baseAsset.bottom = 109;
+            }
+
             this.player.velocity = [0, this.player.yVel];
         })
 
